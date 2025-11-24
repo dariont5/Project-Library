@@ -39,6 +39,12 @@ function renderBooks() {
         visibleBook.textContent = `${book.title} by ${book.author}`;
         visibleBook.id = book.id;
 
+        if (book.read == true) {
+            visibleBook.classList.add('read');
+        } else if (book.read == false) {
+            visibleBook.classList.remove('read');
+        }
+
         // create read toggle button
         let readToggle = document.createElement('button');
         readToggle.textContent = 'Read'
@@ -79,7 +85,7 @@ const cancelBook = document.querySelector('#cancel');
 const submitBook = document.querySelector('#submit-button');
 const newBookForm = document.querySelector('form');
 submitBook.addEventListener('click', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // needed for some reason
     const data = new FormData(newBookForm);
     addBookToLibrary(data.get('title'), data.get('author'), data.get('read'));
     renderBooks()
