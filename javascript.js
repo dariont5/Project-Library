@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const visibleLibrary = document.querySelector('.book-display');
 
 // book constructor function
@@ -14,7 +14,7 @@ function Book(title, author, read = false) {
 }
 
 // toggle read status
-Book.prototype.read = function () {
+Book.prototype.readToggle = function () {
     if (this.read == true) {
         this.read = false;
     } else {
@@ -33,10 +33,35 @@ function renderBooks() {
     visibleLibrary.innerHTML = '';
 
     myLibrary.forEach((book) => {
+        // create book element
         let visibleBook = document.createElement('li');
         visibleBook.classList.add('book');
-        visibleBook.textContent = book.title;
+        visibleBook.textContent = `${book.title} by ${book.author}`;
         visibleBook.id = book.id;
+
+        // create read toggle button
+        let readToggle = document.createElement('button');
+        readToggle.textContent = 'Read'
+        readToggle.classList.add('bottom-up')
+        readToggle.addEventListener('click', () => {
+            book.readToggle();
+            if (book.read == true) {
+                visibleBook.classList.add('read');
+            } else if (book.read == false) {
+                visibleBook.classList.remove('read');
+            }
+        })
+        visibleBook.appendChild(readToggle);
+        // create delete button
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('bottom-bottom');
+        deleteButton.addEventListener('click', () => {
+            myLibrary = myLibrary.filter((currentBook) => currentBook.id != book.id)
+            renderBooks();
+        })
+        visibleBook.appendChild(deleteButton);
+
         visibleLibrary.appendChild(visibleBook);
     });
 }
