@@ -7,11 +7,42 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button>New Book</button>
+    <button id="new-book">New Book</button>
+
+    <dialog>
+        <form action="">
+            <p>Add a new book</p>
+
+            <p>
+                <label for="title">Book Title: </label>
+                <input type="text" id="title" name="title" placeholder="Title">
+            </p>
+
+            <p>
+                <label for="author">Author: </label>
+                <input type="text" id="author" name="author" placeholder="Author">
+            </p>
+
+            <p>
+                <label for="read">Read: </label>
+                <select name="read" id="read">
+                    <option value="true">Yes</option>
+                    <option value="false" selected>No</option>
+                </select>
+            </p>
+
+            <p>
+                <button formmethod="dialog" id="close">Cancel</button>
+                <button id="submit-button" type="submit" name="form-action" value="submit">Add Book</button>
+            </p>
+        </form>
+    </dialog>
 
     <div class="book-display-container">
         <ul class="book-display"></ul>
     </div>
+
+    <div class="output"></div>
 
     <script src="javascript.js"></script>
 </body>
