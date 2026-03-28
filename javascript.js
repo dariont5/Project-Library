@@ -1,31 +1,48 @@
 let myLibrary = [];
 const visibleLibrary = document.querySelector('.book-display');
 
-// book constructor function
-function Book(title, author, read = false) {
-    if(!(new.target)) {
-        throw new error('Must use new to initial new instance');
-    } else {
-        this.title = title;
-        this.author = author;
-        this.read = read;
-        this.id = crypto.randomUUID();
-    }
-}
+// // book constructor function
+// function Book(title, author, read = false) {
+//     if(!(new.target)) {
+//         throw new error('Must use new to initial new instance');
+//     } else {
+//         this.title = title;
+//         this.author = author;
+//         this.read = read;
+//         this.id = crypto.randomUUID();
+//     }
+// }
 
-// toggle read status
-Book.prototype.readToggle = function () {
-    if (this.read == true) {
-        this.read = false;
-    } else {
-        this.read = true;
-    }
-}
+// // toggle read status
+// Book.prototype.readToggle = function () {
+//     if (this.read == true) {
+//         this.read = false;
+//     } else {
+//         this.read = true;
+//     }
+// }
 
 // book addition function
 function addBookToLibrary(title, author, read) {
     let book = new Book(title, author, read);
     myLibrary.push(book);
+}
+
+class Book {
+    constructor(title, author, read = false) {
+        this.title = title;
+        this.author = author;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+
+    readToggle() {
+        if (this.read == true) {
+            this.read = false;
+        } else {
+            this.read = true;
+        }
+    }
 }
 
 // render all books in library
