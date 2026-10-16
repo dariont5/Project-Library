@@ -98,10 +98,10 @@ newBookButton.addEventListener('click', () => {
 });
 
 // submit button adds book
-const cancelBook = document.querySelector('#cancel');
+const cancelBook = document.querySelector('#close');
 const submitBook = document.querySelector('#submit-button');
 const newBookForm = document.querySelector('form');
-submitBook.addEventListener('click', (e) => {
+newBookForm.addEventListener('submit', (e) => {
     e.preventDefault(); // needed for some reason
     const data = new FormData(newBookForm);
     addBookToLibrary(data.get('title'), data.get('author'), data.get('read'));
@@ -110,3 +110,19 @@ submitBook.addEventListener('click', (e) => {
     newBookForm.reset();
 })
 
+// cancel button
+cancelBook.addEventListener('click', () => {
+    newBookDialog.close()
+})
+
+// form validation
+const formTitle = document.getElementById('title');
+const formAuthor = document.getElementById('author');
+
+formTitle.addEventListener('input', () => {
+    if (formTitle.value.length == 0) {
+        formTitle.setCustomValidity('Must enter a value')
+    } else {
+        formTitle.setCustomValidity('')
+    }
+})

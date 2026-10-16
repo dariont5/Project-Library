@@ -16,12 +16,12 @@
 
             <p>
                 <label for="title">Book Title: </label>
-                <input type="text" id="title" name="title" placeholder="Title">
+                <input required type="text" id="title" name="title" placeholder="Title">
             </p>
 
             <p>
                 <label for="author">Author: </label>
-                <input type="text" id="author" name="author" placeholder="Author">
+                <input required type="text" id="author" name="author" placeholder="Author">
             </p>
 
             <!-- <p>
@@ -33,8 +33,8 @@
             </p> -->
 
             <p>
-                <button formmethod="dialog" id="close">Cancel</button>
-                <button id="submit-button" type="submit" name="form-action" value="submit">Add Book</button>
+                <button type="button" id="close">Cancel</button>
+                <button id="submit-button" formmethod="dialog">Add Book</button>
             </p>
         </form>
     </dialog>
